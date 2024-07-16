@@ -1,0 +1,30 @@
+import pandas as pd
+
+index = [['A', 'A', 'B', 'B'], [1, 2, 1, 2]]
+data = [10, 20, 30, 40]
+series = pd.Series(data, index=index)
+print("Series with hierarchical indexing:")
+print(series)
+
+print("\nSubset at outer level:")
+print(series['A'])
+print("\nSubset at inner level:")
+print(series[:, 1])
+
+Output:
+Series with hierarchical indexing:
+A  1    10
+   2    20
+B  1    30
+   2    40
+dtype: int64
+
+Subset at outer level:
+1    10
+2    20
+dtype: int64
+
+Subset at inner level:
+A    10
+B    30
+dtype: int64
