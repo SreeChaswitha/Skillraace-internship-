@@ -1,0 +1,30 @@
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+x = [1, 2, 3, 4, 5]
+y1 = [2, 3, 5, 7, 11]
+y2 = [1, 4, 9, 16, 25]
+
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
+
+sns.lineplot(x=x, y=y1, ax=ax1)
+ax1.set_title('Plot 1')
+ax1.set_xlabel('X-axis')
+ax1.set_ylabel('Y-axis')
+ax1.set_xticks(x)
+ax1.set_xticklabels(['A', 'B', 'C', 'D', 'E'])
+ax1.annotate('Annotation', xy=(3, 5), xytext=(3.5, 6),arrowprops=dict(facecolor='black', shrink=0.05))
+
+sns.lineplot(x=x, y=y2, ax=ax2)
+ax2.set_title('Plot 2')
+ax2.set_xlabel('X-axis')
+ax2.set_ylabel('Y-axis')
+ax2.set_xticks(x)
+ax2.set_xticklabels(['A', 'B', 'C', 'D', 'E'])
+ax2.annotate('Annotation', xy=(3, 16), xytext=(3.5, 18), arrowprops=dict(facecolor='black', shrink=0.05))
+ 
+plt.tight_layout()
+
+plt.savefig('linked_plot.png')
+
+plt.show()
