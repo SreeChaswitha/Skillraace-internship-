@@ -1,0 +1,65 @@
+import pandas as pd
+import numpy as np
+data = {
+'A': [1, 2, np.nan, 4, 5],
+'B': [np.nan, 2, 3, 4, 5],
+'C': ['a', 'b', 'c', 'd', 'e']
+}
+df = pd.DataFrame(data)
+print("Original DataFrame:")
+print(df)
+
+print("\nIdentifying missing data:")
+print(df.isnull())
+
+df_dropped = df.dropna()
+print("\nDataFrame after dropping rows with missing data:")
+print(df_dropped)
+
+print("\nDataFrame after filling missing data:")
+numeric_columns = df.select_dtypes(include=np.number).columns
+df_filled = df.fillna(df[numeric_columns].mean())
+print(df_filled)
+
+df_duplicates_removed = df.drop_duplicates()
+print("\nDataFrame after removing duplicates:")
+print(df_duplicates_removed)
+
+Output:
+Original DataFrame:
+     A    B  C
+0  1.0  NaN  a
+1  2.0  2.0  b
+2  NaN  3.0  c
+3  4.0  4.0  d
+4  5.0  5.0  e
+
+Identifying missing data:
+       A      B      C
+0  False   True  False
+1  False  False  False
+2   True  False  False
+3  False  False  False
+4  False  False  False
+
+DataFrame after dropping rows with missing data:
+     A    B  C
+1  2.0  2.0  b
+3  4.0  4.0  d
+4  5.0  5.0  e
+
+DataFrame after filling missing data:
+     A    B  C
+0  1.0  3.5  a
+1  2.0  2.0  b
+2  3.0  3.0  c
+3  4.0  4.0  d
+4  5.0  5.0  e
+
+DataFrame after removing duplicates:
+     A    B  C
+0  1.0  NaN  a
+1  2.0  2.0  b
+2  NaN  3.0  c
+3  4.0  4.0  d
+4  5.0  5.0  e
