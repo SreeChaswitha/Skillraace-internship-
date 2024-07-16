@@ -1,0 +1,96 @@
+import pandas as pd
+import matplotlib.pyplot as plt 
+
+# Create a Series
+data_series = pd.Series([10, 20, 30, 40, 50], index=['A', 'B', 'C', 'D', 'E'])
+
+# Create a DataFrame
+data_dict = {'Category': ['X', 'Y', 'Z', 'W', 'V'], 'Values': [25, 35, 45, 55, 65]}
+data_df = pd.DataFrame(data_dict) 
+data_df.set_index('Category', inplace=True)
+
+# Create bar plots using Matplotlib 
+plt.figure(figsize=(10, 5))
+
+# Bar plot for Series
+plt.subplot(1, 2, 1)
+plt.bar(data_series.index, data_series.values) 
+plt.title('Bar Plot for Series') 
+plt.xlabel('Categories')
+plt.ylabel('Values')
+
+# Bar plot for DataFrame index 
+plt.subplot(1, 2, 2)
+plt.bar(data_df.index, data_df['Values']) 
+plt.title('Bar Plot for DataFrame Index') 
+plt.xlabel('Categories') 
+plt.ylabel('Values')
+
+plt.tight_layout() 
+plt.show()
+
+
+a)
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
+data = {
+'Category': ['A', 'B', 'C'], 'Value1': [10, 20, 30],
+'Value2': [15, 25, 35],
+'Value3': [20, 30, 40]
+}
+df = pd.DataFrame(data)
+
+# Set the 'Category' column as index
+df.set_index('Category', inplace=True)
+
+# Plot using Matplotlib
+plt.figure(figsize=(8, 5))
+
+# Calculate the width for each group
+n = len(df)
+width = 0.2 # Width of each bar
+index = range(n) # Index for the bars
+ 
+# Plot bars for each value side by side
+for i, column in enumerate(df.columns):
+    
+    plt.bar([x + i * width for x in index], df[column], width=width, label=column)
+plt.xlabel('Categories')
+plt.ylabel('Values')
+plt.title('Matplotlib Grouped Bar Plot')
+plt.xticks([i + width for i in index], df.index)
+plt.legend()
+
+plt.tight_layout()
+plt.show()
+
+# Plot using Seaborn
+plt.figure(figsize=(8, 5))
+
+# Melt the DataFrame to plot bars side by side
+df_melted = df.reset_index().melt(id_vars='Category', var_name='Values')
+
+sns.barplot(data=df_melted, x='Category', y='value', hue='Values')
+plt.title('Seaborn Grouped Bar Plot')
+plt.xlabel('Categories')
+plt.ylabel('Values')
+
+plt.tight_layout()
+plt.show()
+
+
+
+b)
+import matplotlib.pyplot as plt
+
+x = ['A', 'B', 'C', 'D'] 
+y1 = [10, 20, 10, 30]
+y2 = [20, 25, 15, 25]
+
+# plot bars in stack manner 
+plt.bar(x, y1, color='r')
+plt.bar(x, y2, bottom=y1, color='b')
+plt.show()
