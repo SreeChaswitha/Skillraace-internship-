@@ -1,0 +1,29 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Generate example data
+np.random.seed(0)
+data = pd.DataFrame({
+'Category': np.random.choice(['A', 'B', 'C', 'D'], size=100),
+    'Value': np.random.normal(loc=0, scale=1, size=100)
+})
+
+# Plot using Matplotlib
+plt.figure(figsize=(10, 5))
+plt.subplot(1, 2, 1)
+data.boxplot(by='Category', column='Value', ax=plt.gca())
+plt.title('Matplotlib Box Plot')
+plt.xlabel('Category')
+plt.ylabel('Value')
+
+# Plot using Seaborn
+plt.subplot(1, 2, 2)
+sns.boxplot(data=data, x='Category', y='Value')
+plt.title('Seaborn Box Plot')
+plt.xlabel('Category')
+plt.ylabel('Value')
+
+plt.tight_layout()
+plt.show()
