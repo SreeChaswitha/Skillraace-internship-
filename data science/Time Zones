@@ -1,0 +1,12 @@
+import pandas as pd
+ 
+dates_utc = pd.date_range(start='2022-01-01', end='2022-12-31', freq='D', tz='UTC')
+
+dates_localized = dates_utc.tz_convert('America/New_York')
+
+print("Localized timestamps (America/New_York):")
+print(dates_localized)
+
+dates_converted = dates_localized.tz_convert('Europe/London')fq
+print("\nConverted timestamps (Europe/London):")
+print(dates_converted)
