@@ -1,0 +1,8 @@
+import numpy as np
+import pandas as pd
+
+dates = pd.date_range(start='1/1/2022', end='12/31/2022', freq='H')
+
+data = pd.Series(data=np.random.randn(len(dates)), index=dates)
+
+print(data)
